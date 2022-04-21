@@ -10,19 +10,12 @@ namespace Moralis.Web3UnitySdk.Editor
 {
     public class Web3SettingsEditor : EditorWindow
     {
-        private static string[] pages = { "Page_1", "Page_2" };
-        private static string ServerUriDefaultText = "SERVER URI";
-        private static string ApplicationIdDefaultText = "APPLICATION ID";
-
-        private int currentPageIndex = 0;
         private VisualElement rootElement;
         private bool windowDrawn = false;
 
         public bool isSetupWizard = true;
 
         protected static Type WindowType = typeof(Web3SettingsEditor);
-
-
 
         /// <summary>
         /// Menu show event - displays the setup window when menu selection made.
@@ -34,8 +27,8 @@ namespace Moralis.Web3UnitySdk.Editor
 
             window.isSetupWizard = false;
             window.titleContent = new GUIContent("Web3 Request Settings");
-            window.minSize = new Vector2(750, 500);
-            window.maxSize = new Vector2(750, 500);
+            window.minSize = new Vector2(750, 510);
+            window.maxSize = new Vector2(750, 510);
 
             window.Show();
         }
@@ -65,15 +58,6 @@ namespace Moralis.Web3UnitySdk.Editor
                 }
 
                 rootElement = rootVisualElement;
-
-                if (isSetupWizard)
-                {
-                    currentPageIndex = 0;
-                }
-                else
-                {
-                    currentPageIndex = 1;
-                }
 
                 bool mdLoaded = MoralisSettings.MoralisData != null;
 
@@ -125,7 +109,6 @@ namespace Moralis.Web3UnitySdk.Editor
                     SaveSettings();
                 });
 
-
                 var applicationVersionField = rootVisualElement.Q<TextField>("ApplicationVersionField");
                 applicationVersionField.SetValueWithoutNotify(MoralisSettings.MoralisData.ApplicationVersion);
                 applicationVersionField.RegisterValueChangedCallback(evt =>
@@ -150,7 +133,6 @@ namespace Moralis.Web3UnitySdk.Editor
                     SaveSettings();
                 });
                 #endregion
-
             }
         }
     }
